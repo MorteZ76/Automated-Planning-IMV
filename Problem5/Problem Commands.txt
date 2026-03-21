@@ -1,0 +1,77 @@
+set instance curator_1 robot
+set instance drone_1 drone
+set instance stasis_lab location
+set instance maintenance_tunnel location
+set instance artifact_hall_alpha location
+set instance artifact_hall_beta location
+set instance cryo_chamber location
+set instance anti_vibration_pods location
+set instance pod_1 pod
+set instance pod_2 pod
+set instance martian_core_sample artifact
+set instance fragile_rock artifact
+set instance heavy_meteorite artifact
+set instance spot_c1 spot
+set instance spot_c2 spot
+set instance spot_d1 spot
+
+set predicate (adjacent stasis_lab maintenance_tunnel)
+set predicate (adjacent maintenance_tunnel stasis_lab)
+set predicate (adjacent artifact_hall_alpha maintenance_tunnel)
+set predicate (adjacent maintenance_tunnel artifact_hall_alpha)
+set predicate (adjacent artifact_hall_beta maintenance_tunnel)
+set predicate (adjacent maintenance_tunnel artifact_hall_beta)
+set predicate (adjacent anti_vibration_pods maintenance_tunnel)
+set predicate (adjacent maintenance_tunnel anti_vibration_pods)
+set predicate (adjacent cryo_chamber maintenance_tunnel)
+set predicate (adjacent maintenance_tunnel cryo_chamber)
+
+set predicate (low_pressure maintenance_tunnel)
+set predicate (normal_pressure stasis_lab)
+set predicate (normal_pressure artifact_hall_alpha)
+set predicate (normal_pressure artifact_hall_beta)
+set predicate (normal_pressure anti_vibration_pods)
+set predicate (normal_pressure cryo_chamber)
+
+set predicate (cooling_destination cryo_chamber)
+set predicate (safe_destination stasis_lab)
+set predicate (unsafe_destination maintenance_tunnel)
+set predicate (unsafe_destination artifact_hall_alpha)
+set predicate (unsafe_destination artifact_hall_beta)
+set predicate (unsafe_destination anti_vibration_pods)
+set predicate (unsafe_destination cryo_chamber)
+
+set predicate (atl_ag curator_1 maintenance_tunnel)
+set predicate (available curator_1)
+set predicate (no_pod curator_1)
+set predicate (sealing_off curator_1)
+
+set predicate (atl_ag drone_1 maintenance_tunnel)
+set predicate (available drone_1)
+
+set predicate (belongs_to spot_c1 curator_1)
+set predicate (empty_spot spot_c1)
+set predicate (belongs_to spot_c2 curator_1)
+set predicate (empty_spot spot_c2)
+set predicate (belongs_to spot_d1 drone_1)
+set predicate (empty_spot spot_d1)
+
+set predicate (atl_pod pod_1 anti_vibration_pods)
+set predicate (free_pod pod_1)
+set predicate (atl_pod pod_2 anti_vibration_pods)
+set predicate (free_pod pod_2)
+
+set predicate (atl_art fragile_rock artifact_hall_beta)
+set predicate (free_artifact fragile_rock)
+set predicate (delicate fragile_rock)
+set predicate (cooled fragile_rock)
+
+set predicate (atl_art martian_core_sample artifact_hall_alpha)
+set predicate (free_artifact martian_core_sample)
+set predicate (need_cooling martian_core_sample)
+set predicate (normal_artifact martian_core_sample)
+
+set predicate (atl_art heavy_meteorite artifact_hall_alpha)
+set predicate (free_artifact heavy_meteorite)
+set predicate (normal_artifact heavy_meteorite)
+set predicate (cooled heavy_meteorite)

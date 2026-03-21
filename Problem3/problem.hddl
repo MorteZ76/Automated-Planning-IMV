@@ -1,0 +1,59 @@
+(define
+	(problem problem3_final)
+	(:domain problem3_htn)
+	(:objects
+		cryo-chamber anti-vibration-pods artifact-hall-alpha artifact-hall-beta maintenance-tunnel stasis-lab - location
+		curator-1 - robot  
+		drone-1 - drone
+		spot-c1 spot-c2 - spot
+		spot-d1 - spot
+		pod-1 pod-2 - pod  
+		martian-core-sample fragile-rock heavy-meteorite - artifact      
+	)
+	(:htn
+		:parameters ()
+		:subtasks (and
+			(task0 (evacuate_normal heavy-meteorite drone-1))
+			(task1 (evacuate_hot martian-core-sample curator-1))
+			(task2 (evacuate_delicate fragile-rock curator-1))
+		)
+		:ordering (and
+			(task0 < task1)
+			(task1 < task2)
+		)
+	)
+	(:init
+		(adjacent stasis-lab maintenance-tunnel)
+		(adjacent maintenance-tunnel stasis-lab)
+		(adjacent artifact-hall-alpha maintenance-tunnel)
+		(adjacent maintenance-tunnel artifact-hall-alpha)
+		(adjacent artifact-hall-beta maintenance-tunnel)
+		(adjacent maintenance-tunnel artifact-hall-beta)
+		(adjacent anti-vibration-pods maintenance-tunnel)
+		(adjacent maintenance-tunnel anti-vibration-pods)
+		(adjacent cryo-chamber maintenance-tunnel)
+		(adjacent maintenance-tunnel cryo-chamber)
+
+		(low-pressure maintenance-tunnel)  
+		(cooling-destination cryo-chamber) 
+		(safe-destination stasis-lab)      
+
+		;; Both agents start in the tunnel
+		(atl curator-1 maintenance-tunnel)
+		(atl drone-1 maintenance-tunnel)
+
+		;; Agent spot ownership
+		(belongs-to spot-c1 curator-1) (empty-spot spot-c1)
+		(belongs-to spot-c2 curator-1) (empty-spot spot-c2)
+		(belongs-to spot-d1 drone-1) (empty-spot spot-d1)
+
+		;; Pod initial state
+		(atl pod-1 anti-vibration-pods) (free-pod pod-1)
+		(atl pod-2 anti-vibration-pods) (free-pod pod-2)
+
+		;; Artifact locations and properties
+		(atl fragile-rock artifact-hall-beta) (free-artifact fragile-rock) (delicate fragile-rock)
+		(atl martian-core-sample artifact-hall-alpha) (free-artifact martian-core-sample) (need-cooling martian-core-sample) 
+		(atl heavy-meteorite artifact-hall-alpha) (free-artifact heavy-meteorite)
+	)
+)

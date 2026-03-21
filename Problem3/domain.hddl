@@ -1,0 +1,490 @@
+(define (domain problem3_htn)
+	(:requirements :typing :hierachie)
+	(:types
+		location - object
+		spot - object
+		artifact - object
+		pod - object
+		agent - object
+		robot - agent
+		drone - agent
+	)
+
+	(:predicates
+		(adjacent ?arg0 - location ?arg1 - location)
+		(low-pressure ?arg0 - location)
+		(safe-destination ?arg0 - location)
+		(cooling-destination ?arg0 - location)
+		(atl ?arg0 - object ?arg1 - location)
+		(belongs-to ?arg0 - spot ?arg1 - agent)
+		(empty-spot ?arg0 - spot)
+		(holding ?arg0 - spot ?arg1 - artifact)
+		(free-pod ?arg0 - pod)
+		(pod-carried-by ?arg0 - pod ?arg1 - robot)
+		(delicate ?arg0 - artifact)
+		(need-cooling ?arg0 - artifact)
+		(free-artifact ?arg0 - artifact)
+		(has-pod ?arg0 - robot)
+		(sealing-mode ?arg0 - robot)
+	)
+
+	(:task navigate
+		:parameters (?ag - agent ?to - location)
+		:precondition ()
+		:effect ()
+	)
+
+	(:task apply_seal
+		:parameters (?r - robot)
+		:precondition ()
+		:effect ()
+	)
+
+	(:task evacuate_delicate
+		:parameters (?a - artifact ?r - robot)
+		:precondition ()
+		:effect ()
+	)
+
+	(:task evacuate_hot
+		:parameters (?a - artifact ?ag - agent)
+		:precondition ()
+		:effect ()
+	)
+
+	(:task evacuate_normal
+		:parameters (?a - artifact ?ag - agent)
+		:precondition ()
+		:effect ()
+	)
+
+	(:method m_seal_already_on_ordering_0
+		:parameters (?r - robot)
+		:task (apply_seal ?r)
+		:precondition (and
+			(sealing-mode ?r)
+		)
+		:subtasks (
+		)
+	)
+
+	(:method m_seal_turn_on_ordering_0
+		:parameters (?r - robot)
+		:task (apply_seal ?r)
+		:precondition (and
+			(not (sealing-mode ?r))
+		)
+		:subtasks (and
+		 (task0 (enable-sealing ?r))
+		)
+	)
+
+	(:method m_nav_robot_stay_ordering_0
+		:parameters (?r - robot ?to - location)
+		:task (navigate ?r ?to)
+		:precondition (and
+			(atl ?r ?to)
+		)
+		:subtasks (
+		)
+	)
+
+	(:method m_nav_robot_into_tunnel_ordering_0
+		:parameters (?from - location ?r - robot ?to - location)
+		:task (navigate ?r ?to)
+		:precondition (and
+			(atl ?r ?from)
+			(not (low-pressure ?from))
+			(low-pressure ?to)
+			(adjacent ?from ?to)
+		)
+		:subtasks (and
+		 (task0 (apply_seal ?r))
+		 (task1 (move-sealing ?r ?from ?to))
+		)
+		:ordering (and
+			(task0 < task1)
+		)
+	)
+
+	(:method m_nav_robot_out_of_tunnel_ordering_0
+		:parameters (?from - location ?r - robot ?to - location)
+		:task (navigate ?r ?to)
+		:precondition (and
+			(atl ?r ?from)
+			(low-pressure ?from)
+			(not (low-pressure ?to))
+			(adjacent ?from ?to)
+		)
+		:subtasks (and
+		 (task0 (apply_seal ?r))
+		 (task1 (move-sealing ?r ?from ?to))
+		)
+		:ordering (and
+			(task0 < task1)
+		)
+	)
+
+	(:method m_nav_robot_cross_tunnel_ordering_0
+		:parameters (?from - location ?r - robot ?to - location ?tunnel - location)
+		:task (navigate ?r ?to)
+		:precondition (and
+			(atl ?r ?from)
+			(not (low-pressure ?from))
+			(not (low-pressure ?to))
+			(low-pressure ?tunnel)
+			(adjacent ?from ?tunnel)
+			(adjacent ?tunnel ?to)
+		)
+		:subtasks (and
+		 (task0 (apply_seal ?r))
+		 (task1 (move-sealing ?r ?from ?tunnel))
+		 (task2 (move-sealing ?r ?tunnel ?to))
+		)
+		:ordering (and
+			(task0 < task1)
+			(task1 < task2)
+		)
+	)
+
+	(:method m_nav_drone_stay_ordering_0
+		:parameters (?d - drone ?to - location)
+		:task (navigate ?d ?to)
+		:precondition (and
+			(atl ?d ?to)
+		)
+		:subtasks (
+		)
+	)
+
+	(:method m_nav_drone_into_tunnel_ordering_0
+		:parameters (?from - location ?d - drone ?to - location)
+		:task (navigate ?d ?to)
+		:precondition (and
+			(atl ?d ?from)
+			(not (low-pressure ?from))
+			(low-pressure ?to)
+			(adjacent ?from ?to)
+		)
+		:subtasks (and
+		 (task0 (move-drone ?d ?from ?to))
+		)
+	)
+
+	(:method m_nav_drone_out_of_tunnel_ordering_0
+		:parameters (?from - location ?d - drone ?to - location)
+		:task (navigate ?d ?to)
+		:precondition (and
+			(atl ?d ?from)
+			(low-pressure ?from)
+			(not (low-pressure ?to))
+			(adjacent ?from ?to)
+		)
+		:subtasks (and
+		 (task0 (move-drone ?d ?from ?to))
+		)
+	)
+
+	(:method m_nav_drone_cross_tunnel_ordering_0
+		:parameters (?d - drone ?from - location ?to - location ?tunnel - location)
+		:task (navigate ?d ?to)
+		:precondition (and
+			(atl ?d ?from)
+			(not (low-pressure ?from))
+			(not (low-pressure ?to))
+			(low-pressure ?tunnel)
+			(adjacent ?from ?tunnel)
+			(adjacent ?tunnel ?to)
+		)
+		:subtasks (and
+		 (task0 (move-drone ?d ?from ?tunnel))
+		 (task1 (move-drone ?d ?tunnel ?to))
+		)
+		:ordering (and
+			(task0 < task1)
+		)
+	)
+
+	(:method m_evac_delicate_has_pod_ordering_0
+		:parameters (?a - artifact ?loc_art - location ?loc_dest - location ?r - robot ?s - spot)
+		:task (evacuate_delicate ?a ?r)
+		:precondition (and
+			(delicate ?a)
+			(atl ?a ?loc_art)
+			(has-pod ?r)
+			(belongs-to ?s ?r)
+			(empty-spot ?s)
+		)
+		:subtasks (and
+		 (task0 (navigate ?r ?loc_art))
+		 (task1 (load-delicate-artifact ?a ?loc_art ?r ?s))
+		 (task2 (navigate ?r ?loc_dest))
+		 (task3 (unload-artifact ?a ?loc_dest ?r ?s))
+		)
+		:ordering (and
+			(task0 < task1)
+			(task1 < task2)
+			(task2 < task3)
+		)
+	)
+
+	(:method m_evac_delicate_needs_pod_ordering_0
+		:parameters (?a - artifact ?loc_art - location ?loc_dest - location ?loc_pod - location ?p - pod ?r - robot ?s - spot)
+		:task (evacuate_delicate ?a ?r)
+		:precondition (and
+			(delicate ?a)
+			(atl ?a ?loc_art)
+			(not (has-pod ?r))
+			(free-pod ?p)
+			(atl ?p ?loc_pod)
+			(belongs-to ?s ?r)
+			(empty-spot ?s)
+		)
+		:subtasks (and
+		 (task0 (navigate ?r ?loc_pod))
+		 (task1 (load-pod ?p ?loc_pod ?r))
+		 (task2 (navigate ?r ?loc_art))
+		 (task3 (load-delicate-artifact ?a ?loc_art ?r ?s))
+		 (task4 (navigate ?r ?loc_dest))
+		 (task5 (unload-artifact ?a ?loc_dest ?r ?s))
+		)
+		:ordering (and
+			(task0 < task1)
+			(task1 < task2)
+			(task2 < task3)
+			(task3 < task4)
+			(task4 < task5)
+		)
+	)
+
+	(:method m_evac_hot_ordering_0
+		:parameters (?a - artifact ?ag - agent ?loc_art - location ?loc_cryo - location ?loc_dest - location ?s - spot)
+		:task (evacuate_hot ?a ?ag)
+		:precondition (and
+			(need-cooling ?a)
+			(atl ?a ?loc_art)
+			(cooling-destination ?loc_cryo)
+			(safe-destination ?loc_dest)
+			(belongs-to ?s ?ag)
+			(empty-spot ?s)
+		)
+		:subtasks (and
+		 (task0 (navigate ?ag ?loc_art))
+		 (task1 (load-normal-artifact ?a ?loc_art ?ag ?s))
+		 (task2 (navigate ?ag ?loc_cryo))
+		 (task3 (cooling ?a ?loc_cryo ?ag ?s))
+		 (task4 (navigate ?ag ?loc_dest))
+		 (task5 (unload-artifact ?a ?loc_dest ?ag ?s))
+		)
+		:ordering (and
+			(task0 < task1)
+			(task1 < task2)
+			(task2 < task3)
+			(task3 < task4)
+			(task4 < task5)
+		)
+	)
+
+	(:method m_evac_normal_ordering_0
+		:parameters (?a - artifact ?ag - agent ?loc_art - location ?loc_dest - location ?s - spot)
+		:task (evacuate_normal ?a ?ag)
+		:precondition (and
+			(not (delicate ?a))
+			(not (need-cooling ?a))
+			(atl ?a ?loc_art)
+			(safe-destination ?loc_dest)
+			(belongs-to ?s ?ag)
+			(empty-spot ?s)
+		)
+		:subtasks (and
+		 (task0 (navigate ?ag ?loc_art))
+		 (task1 (load-normal-artifact ?a ?loc_art ?ag ?s))
+		 (task2 (navigate ?ag ?loc_dest))
+		 (task3 (unload-artifact ?a ?loc_dest ?ag ?s))
+		)
+		:ordering (and
+			(task0 < task1)
+			(task1 < task2)
+			(task2 < task3)
+		)
+	)
+
+	(:action move-normal
+		:parameters (?r - robot ?from - location ?to - location)
+		:precondition
+			(and
+				(adjacent ?from ?to)
+				(atl ?r ?from)
+				(not (low-pressure ?from))
+				(not (low-pressure ?to))
+			)
+		:effect
+			(and
+				(atl ?r ?to)
+				(not (atl ?r ?from))
+			)
+	)
+
+	(:action move-sealing
+		:parameters (?r - robot ?from - location ?to - location)
+		:precondition
+			(and
+				(adjacent ?from ?to)
+				(atl ?r ?from)
+				(sealing-mode ?r)
+			)
+		:effect
+			(and
+				(atl ?r ?to)
+				(not (atl ?r ?from))
+			)
+	)
+
+	(:action move-drone
+		:parameters (?d - drone ?from - location ?to - location)
+		:precondition
+			(and
+				(adjacent ?from ?to)
+				(atl ?d ?from)
+			)
+		:effect
+			(and
+				(atl ?d ?to)
+				(not (atl ?d ?from))
+			)
+	)
+
+	(:action load-delicate-artifact
+		:parameters (?a - artifact ?l - location ?r - robot ?s - spot)
+		:precondition
+			(and
+				(atl ?r ?l)
+				(atl ?a ?l)
+				(free-artifact ?a)
+				(delicate ?a)
+				(has-pod ?r)
+				(belongs-to ?s ?r)
+				(empty-spot ?s)
+			)
+		:effect
+			(and
+				(not (free-artifact ?a))
+				(not (atl ?a ?l))
+				(not (empty-spot ?s))
+				(holding ?s ?a)
+			)
+	)
+
+	(:action load-normal-artifact
+		:parameters (?a - artifact ?l - location ?ag - agent ?s - spot)
+		:precondition
+			(and
+				(atl ?ag ?l)
+				(atl ?a ?l)
+				(free-artifact ?a)
+				(not (delicate ?a))
+				(belongs-to ?s ?ag)
+				(empty-spot ?s)
+			)
+		:effect
+			(and
+				(not (free-artifact ?a))
+				(not (atl ?a ?l))
+				(not (empty-spot ?s))
+				(holding ?s ?a)
+			)
+	)
+
+	(:action unload-artifact
+		:parameters (?a - artifact ?l - location ?ag - agent ?s - spot)
+		:precondition
+			(and
+				(atl ?ag ?l)
+				(safe-destination ?l)
+				(not (need-cooling ?a))
+				(holding ?s ?a)
+				(belongs-to ?s ?ag)
+			)
+		:effect
+			(and
+				(atl ?a ?l)
+				(empty-spot ?s)
+				(not (holding ?s ?a))
+			)
+	)
+
+	(:action cooling
+		:parameters (?a - artifact ?l - location ?ag - agent ?s - spot)
+		:precondition
+			(and
+				(atl ?ag ?l)
+				(cooling-destination ?l)
+				(need-cooling ?a)
+				(holding ?s ?a)
+				(belongs-to ?s ?ag)
+			)
+		:effect
+			(and
+				(not (need-cooling ?a))
+			)
+	)
+
+	(:action load-pod
+		:parameters (?p - pod ?l - location ?r - robot)
+		:precondition
+			(and
+				(atl ?r ?l)
+				(not (has-pod ?r))
+				(free-pod ?p)
+				(atl ?p ?l)
+			)
+		:effect
+			(and
+				(has-pod ?r)
+				(not (free-pod ?p))
+				(pod-carried-by ?p ?r)
+				(not (atl ?p ?l))
+			)
+	)
+
+	(:action unload-pod
+		:parameters (?p - pod ?l - location ?r - robot)
+		:precondition
+			(and
+				(atl ?r ?l)
+				(pod-carried-by ?p ?r)
+				(has-pod ?r)
+			)
+		:effect
+			(and
+				(not (pod-carried-by ?p ?r))
+				(not (has-pod ?r))
+				(free-pod ?p)
+				(atl ?p ?l)
+			)
+	)
+
+	(:action enable-sealing
+		:parameters (?r - robot)
+		:precondition
+			(and
+				(not (sealing-mode ?r))
+			)
+		:effect
+			(and
+				(sealing-mode ?r)
+			)
+	)
+
+	(:action disable-sealing
+		:parameters (?r - robot)
+		:precondition
+			(and
+				(sealing-mode ?r)
+			)
+		:effect
+			(and
+				(not (sealing-mode ?r))
+			)
+	)
+)
