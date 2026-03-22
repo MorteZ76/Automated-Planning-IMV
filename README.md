@@ -35,7 +35,7 @@ planutils run downward domain.pddl problem.pddl -- --search "astar(blind())"
 ```   
 ### For Satisficing Solution (LAMA-First):
 ```bash
-planutils run downward domain.pddl problem.pddl --alias lama-first
+planutils run downward domain.pddl problem.pddl -- --search "lazy_greedy([ff(),cea()],preferred=[ff(),cea()])"
 ```   
 (Repeat these commands in the Problem2 folder for the multi-agent/capacity version).
 
@@ -43,9 +43,8 @@ planutils run downward domain.pddl problem.pddl --alias lama-first
 Problem 3 requires the **PANDA** framework to process Hierarchical Task Networks (HDDL).
 ```bash
 cd ../Problem3
-# Ensure panda is installed or use the PANDA container/server
-# Example command for a local PANDA installation:
-panda-client domain.hddl problem.hddl
+# Run the HTN solver using the planutils wrapper
+planutils run panda domain.hddl problem.hddl
 ``` 
 This will utilize the hhRC(hFF) heuristic to solve the task decomposition.
 
@@ -61,17 +60,61 @@ planutils run optic domain.pddl problem.pddl
 planutils run tfd domain.pddl problem.pddl
 ```
 ## 5. PlanSys2 & ROS 2 Deployment (Problem 5)
-Problem 5 must be run in a ROS 2 Humble/Iron environment (outside the standard planutils container) as it involves building C++ nodes.
+Problem 5 must be run in a native ROS 2 Humble/Iron environment (outside the standard planutils container) because it requires building and linking C++ Action Nodes.
+
+### 1. Environment Setup (Host Terminal)
+If you do not have ROS 2 installed locally, use the official Docker image. Ensure you are in the root of your project directory before running the command to mount your workspace correctly.
 ```bash
-# Move to the PlanSys2 package directory
-cd ../Problem5/plansys2-assignment
+# Exit the planutils container
+exit
 
-# Install dependencies and build the package
-rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install
-
-# Source the workspace and launch the system
-source install/setup.bash
-ros2 launch plansys2_assignment_launch.py
+# Start a ROS 2 Humble container with your workspace mounted
+# Note: $(pwd) mounts your current directory to /root/workspace
+docker run -it --name plansys_vault --privileged -v "$(pwd):/root/workspace" osrf/ros:humble-desktop
 ```
-This will initialize the cooling-node.cpp and other action nodes to simulate the Martian vault execution.
+
+### 2. Dependency Installation & Build (Terminal 1)
+Once inside the ROS 2 container, install the PlanSys2 framework and build the Martian Vault package.
+```bash
+# 1. Update package index and install PlanSys2 + Build Tools
+apt update
+apt install -y ros-humble-plansys2* \
+                python3-colcon-common-extensions \
+                python3-rosdep
+
+# 2. Initialize and update rosdep
+rosdep update
+
+# 3. Navigate to the project folder
+cd /root/workspace/Problem5/plansys2_assignment
+
+# 4. Install workspace-specific dependencies
+rosdep install --from-paths src --ignore-src -r -y
+
+# 5. Build and Source the workspace
+colcon build --symlink-install
+source install/setup.bash
+
+# 6. Launch the PlanSys2 system and Action Nodes
+ros2 launch plansys2_assignment plansys2_assignment_launch.py
+
+```
+### 3. Problem Initialization & Execution (Terminal 2)
+While Terminal 1 is running, open a second terminal to "feed" the world state and trigger the plan.
+
+```bash
+# 1. Enter the running container
+docker exec -it plansys_vault bash
+
+# 2. Source the ROS 2 and local environment
+source /opt/ros/humble/setup.bash
+cd /root/workspace/Problem5/plansys2_assignment
+source install/setup.bash
+
+# 3. Load state and run via the One-Shot Pipe 
+# This uses your commands.txt to initialize and execute in one sequence
+(cat commands.txt; sleep 5) | ros2 run plansys2_terminal plansys2_terminal
+
+```
+### Technical Note: Hardware Coordination
+The PlanSys2 executor handles the concurrent execution of the drone_1 and curator_1 actions. During the run phase, Terminal 1 will display real-time logs from the C++ nodes (e.g., cooling_node, move_drone_node) as they interact with the simulated environment to secure the artifacts.
