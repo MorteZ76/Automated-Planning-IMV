@@ -3,7 +3,7 @@ PDDL &amp; HDDL models for the Interplanetary Museum Vault (IMV) space scenario.
 
 ## 1. Repository Setup and Containerization
 
-First, clone the repository and start the planutils container, which provides a pre-configured environment for Fast Downward, Optic, and TFD.
+First, clone the repository and start the $planutils$ container, which provides a pre-configured environment for **Fast Downward**, **Optic**, and **TFD**.
 
 ```bash
 # Clone the repository
@@ -11,22 +11,27 @@ git clone https://github.com/MorteZ76/Automated-Planning-IMV
 cd Automated-Planning-IMV
 
 # Start the Planutils container with your local files mounted
-docker run -it -v $(pwd):/root/workspace aiplanning/planutils:latest
+# Note: --privileged is required to allow Singularity/Apptainer to run inside Docker
+docker run -it --privileged -v "/$(pwd):/root/workspace" aiplanning/planutils:latest
 ```
- Once inside the container, initialize the environment:
+Once inside the container, navigate to your files and initialize the environment:
 
 ```bash
+# Move to the mounted project directory
+cd /root/workspace
+
+# Initialize planutils and install the required solvers
 planutils activate
-# Install the required planners if not present
-planutils install downward optic tfd
+planutils install downward optic tfd panda
 ```   
 ## 2. Running Classical Planning (Problems 1 & 2)
 These problems use Fast Downward to find optimal and satisficing plans for artifact relocation.
 
 ### For Optimal Solution (A* Blind):
+This configuration guarantees the shortest path but results in high state expansion
 ```bash
 cd Problem1
-planutils run downward domain.pddl problem.pddl --search "astar(blind())"
+planutils run downward domain.pddl problem.pddl -- --search "astar(blind())"
 ```   
 ### For Satisficing Solution (LAMA-First):
 ```bash
