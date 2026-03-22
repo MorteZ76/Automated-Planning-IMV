@@ -1,0 +1,9 @@
+# ROS 2 build artifacts
+Problem5/plansys2_assignment/build/
+Problem5/plansys2_assignment/install/
+Problem5/plansys2_assignment/log/
+
+# Plan files and logs
+**/sas_plan
+**/panda.log
+**/*.psas

@@ -75,3 +75,7 @@ set predicate (atl_art heavy_meteorite artifact_hall_alpha)
 set predicate (free_artifact heavy_meteorite)
 set predicate (normal_artifact heavy_meteorite)
 set predicate (cooled heavy_meteorite)
+
+set goal (and (atl_art fragile_rock stasis_lab) (atl_art martian_core_sample stasis_lab) (atl_art heavy_meteorite stasis_lab))
+get plan
+run
