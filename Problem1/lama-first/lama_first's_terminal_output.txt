@@ -1,0 +1,182 @@
+(planutils) root@5cbe8f9fd4ca:~/workspace/Problem1$ planutils run downward domain.pddl problem.pddl -- --search "lazy_greedy([ff(),cea()],preferred=[ff(),cea()])"
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /usr/bin/python3 /workspace/downward/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.010s CPU, 0.008s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.003s wall-clock]
+Preparing model... [0.000s CPU, 0.000s wall-clock]
+Generated 59 rules.
+Computing model... [0.000s CPU, 0.001s wall-clock]
+139 relevant atoms
+212 auxiliary atoms
+351 final queue length
+414 total queue pushes
+Completing instantiation... [0.000s CPU, 0.000s wall-clock]
+Instantiating: [0.000s CPU, 0.006s wall-clock]
+Computing fact groups...
+Finding invariants...
+24 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+6 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.002s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Processing axioms: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.001s wall-clock]
+28 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+5 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.000s wall-clock]
+Reordering and filtering variables...
+13 of 13 variables necessary.
+4 of 11 mutex groups necessary.
+41 of 41 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.000s wall-clock]
+Translator variables: 13
+Translator derived variables: 0
+Translator facts: 44
+Translator goal facts: 2
+Translator mutex groups: 4
+Translator total mutex groups size: 8
+Translator operators: 41
+Translator axioms: 0
+Translator task size: 354
+Translator peak memory: 32692 KB
+Writing output... [0.000s CPU, 0.004s wall-clock]
+Done! [0.020s CPU, 0.022s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search command line string: /workspace/downward/builds/release/bin/downward --search 'lazy_greedy([ff(),cea()],preferred=[ff(),cea()])' --internal-plan-file sas_plan < output.sas
+[t=0.010215s, 12120 KB] reading input...
+[t=0.011529s, 12120 KB] done reading input!
+[t=0.016360s, 12384 KB] Simplifying 97 unary operators... done! [97 unary operators]
+[t=0.016497s, 12384 KB] time to simplify: 0.000154s
+[t=0.016521s, 12384 KB] Initializing additive heuristic...
+[t=0.016529s, 12384 KB] Initializing FF heuristic...
+[t=0.016549s, 12384 KB] Initializing context-enhanced additive heuristic...
+[t=0.016730s, 12384 KB] Simplifying 97 unary operators... done! [97 unary operators]
+[t=0.016824s, 12384 KB] time to simplify: 0.000105s
+[t=0.016853s, 12384 KB] Initializing additive heuristic...
+[t=0.016876s, 12384 KB] Initializing FF heuristic...
+[t=0.016902s, 12384 KB] Initializing context-enhanced additive heuristic...
+[t=0.017024s, 12384 KB] Building successor generator...done!
+[t=0.017084s, 12384 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.017091s, 12384 KB] time for successor generation creation: 0.000017s
+[t=0.017107s, 12384 KB] Variables: 13
+[t=0.017125s, 12384 KB] FactPairs: 44
+[t=0.017133s, 12384 KB] Bytes per state: 4
+[t=0.017152s, 12384 KB] Conducting lazy best first search, (real) bound = 2147483647
+[t=0.017241s, 12516 KB] New best heuristic value for cea: 23
+[t=0.017261s, 12516 KB] New best heuristic value for ff: 12
+[t=0.017280s, 12516 KB] g=0, 1 evaluated, 0 expanded
+[t=0.017321s, 12516 KB] Initial heuristic value for cea: 23
+[t=0.017340s, 12516 KB] Initial heuristic value for ff: 12
+[t=0.017361s, 12516 KB] Initial heuristic value for cea: 23
+[t=0.017370s, 12516 KB] Initial heuristic value for ff: 12
+[t=0.017396s, 12516 KB] New best heuristic value for cea: 16
+[t=0.017415s, 12516 KB] New best heuristic value for ff: 11
+[t=0.017432s, 12516 KB] g=1, 2 evaluated, 1 expanded
+[t=0.017526s, 12516 KB] New best heuristic value for ff: 10
+[t=0.017546s, 12516 KB] g=3, 8 evaluated, 7 expanded
+[t=0.017603s, 12516 KB] New best heuristic value for cea: 14
+[t=0.017624s, 12516 KB] New best heuristic value for ff: 9
+[t=0.017644s, 12516 KB] g=4, 10 evaluated, 9 expanded
+[t=0.017731s, 12516 KB] New best heuristic value for ff: 8
+[t=0.017749s, 12516 KB] g=6, 15 evaluated, 14 expanded
+[t=0.017777s, 12516 KB] New best heuristic value for cea: 13
+[t=0.017796s, 12516 KB] New best heuristic value for ff: 7
+[t=0.017807s, 12516 KB] g=7, 16 evaluated, 15 expanded
+[t=0.017851s, 12516 KB] New best heuristic value for cea: 12
+[t=0.017869s, 12516 KB] New best heuristic value for ff: 6
+[t=0.017896s, 12516 KB] g=9, 20 evaluated, 19 expanded
+[t=0.017923s, 12516 KB] New best heuristic value for cea: 9
+[t=0.017946s, 12516 KB] New best heuristic value for ff: 5
+[t=0.017971s, 12516 KB] g=10, 21 evaluated, 20 expanded
+[t=0.018018s, 12516 KB] New best heuristic value for cea: 8
+[t=0.018038s, 12516 KB] g=11, 23 evaluated, 22 expanded
+[t=0.018057s, 12516 KB] New best heuristic value for cea: 6
+[t=0.018072s, 12516 KB] New best heuristic value for ff: 4
+[t=0.018081s, 12516 KB] g=12, 24 evaluated, 23 expanded
+[t=0.018100s, 12516 KB] New best heuristic value for cea: 5
+[t=0.018121s, 12516 KB] g=13, 25 evaluated, 24 expanded
+[t=0.018149s, 12516 KB] New best heuristic value for cea: 4
+[t=0.018168s, 12516 KB] g=14, 26 evaluated, 25 expanded
+[t=0.018190s, 12516 KB] New best heuristic value for cea: 3
+[t=0.018211s, 12516 KB] New best heuristic value for ff: 3
+[t=0.018260s, 12516 KB] g=15, 27 evaluated, 26 expanded
+[t=0.018293s, 12516 KB] New best heuristic value for cea: 2
+[t=0.018318s, 12516 KB] New best heuristic value for ff: 2
+[t=0.018340s, 12516 KB] g=16, 28 evaluated, 27 expanded
+[t=0.018376s, 12516 KB] New best heuristic value for cea: 1
+[t=0.018396s, 12516 KB] New best heuristic value for ff: 1
+[t=0.018422s, 12516 KB] g=17, 29 evaluated, 28 expanded
+[t=0.018457s, 12516 KB] Solution found!
+[t=0.018483s, 12516 KB] Actual search time: 0.001292s
+enable-sealing curator-1 (1)
+move-sealing curator-1 maintenance-tunnel anti-vibration-pods (1)
+load-pod pod-1 anti-vibration-pods curator-1 (1)
+move-sealing curator-1 anti-vibration-pods maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel artifact-hall-alpha (1)
+load-normal-artifact martian-core-sample artifact-hall-alpha curator-1 (1)
+move-sealing curator-1 artifact-hall-alpha maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel cryo-chamber (1)
+cooling martian-core-sample cryo-chamber curator-1 (1)
+move-sealing curator-1 cryo-chamber maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel stasis-lab (1)
+unload-artifact martian-core-sample stasis-lab curator-1 (1)
+move-sealing curator-1 stasis-lab maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel artifact-hall-beta (1)
+load-delicate-artifact fragile-rock artifact-hall-beta curator-1 (1)
+move-sealing curator-1 artifact-hall-beta maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel stasis-lab (1)
+unload-artifact fragile-rock stasis-lab curator-1 (1)
+[t=0.018506s, 12516 KB] Plan length: 18 step(s).
+[t=0.018506s, 12516 KB] Plan cost: 18
+[t=0.018506s, 12516 KB] Expanded 29 state(s).
+[t=0.018506s, 12516 KB] Reopened 0 state(s).
+[t=0.018506s, 12516 KB] Evaluated 30 state(s).
+[t=0.018506s, 12516 KB] Evaluations: 118
+[t=0.018506s, 12516 KB] Generated 99 state(s).
+[t=0.018506s, 12516 KB] Dead ends: 0 state(s).
+[t=0.018506s, 12516 KB] Number of registered states: 30
+[t=0.018506s, 12516 KB] Int hash set load factor: 30/32 = 0.937500
+[t=0.018506s, 12516 KB] Int hash set resizes: 5
+[t=0.018506s, 12516 KB] Search time: 0.001354s
+[t=0.018506s, 12516 KB] Total time: 0.018506s
+Solution found.
+Peak memory: 12516 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.26s
+(planutils) root@5cbe8f9fd4ca:~/workspace/Problem1$

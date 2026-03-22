@@ -1,0 +1,164 @@
+(planutils) root@5cbe8f9fd4ca:~/workspace$ cd Problem2
+(planutils) root@5cbe8f9fd4ca:~/workspace/Problem2$ cd Problem1
+planutils run downward domain.pddl problem.pddl -- --search "astar(blind())"
+bash: cd: Problem1: No such file or directory
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /usr/bin/python3 /workspace/downward/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.026s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.004s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 74 rules.
+Computing model... [0.010s CPU, 0.001s wall-clock]
+213 relevant atoms
+379 auxiliary atoms
+592 final queue length
+676 total queue pushes
+Completing instantiation... [0.000s CPU, 0.001s wall-clock]
+Instantiating: [0.010s CPU, 0.008s wall-clock]
+Computing fact groups...
+Finding invariants...
+21 initial candidates
+Finding invariants: [0.000s CPU, 0.001s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+12 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.002s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Processing axioms: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.001s wall-clock]
+44 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+1 operators removed
+0 axioms removed
+8 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.001s wall-clock]
+Reordering and filtering variables...
+19 of 19 variables necessary.
+8 of 15 mutex groups necessary.
+65 of 65 operators necessary.
+2 of 2 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.001s wall-clock]
+Translator variables: 19
+Translator derived variables: 1
+Translator facts: 64
+Translator goal facts: 3
+Translator mutex groups: 8
+Translator total mutex groups size: 26
+Translator operators: 65
+Translator axioms: 2
+Translator task size: 508
+Translator peak memory: 32692 KB
+Writing output... [0.000s CPU, 0.004s wall-clock]
+Done! [0.010s CPU, 0.044s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search command line string: /workspace/downward/builds/release/bin/downward --search 'astar(blind())' --internal-plan-file sas_plan < output.sas
+[t=0.009835s, 12120 KB] reading input...
+[t=0.011354s, 12120 KB] done reading input!
+[t=0.016184s, 12384 KB] Initializing blind search heuristic...
+[t=0.016265s, 12384 KB] Building successor generator...done!
+[t=0.016356s, 12384 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.016374s, 12384 KB] time for successor generation creation: 0.000053s
+[t=0.016385s, 12384 KB] Variables: 19
+[t=0.016404s, 12384 KB] FactPairs: 64
+[t=0.016422s, 12384 KB] Bytes per state: 4
+[t=0.016446s, 12384 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.016474s, 12384 KB] New best heuristic value for blind: 1
+[t=0.016492s, 12384 KB] g=0, 1 evaluated, 0 expanded
+[t=0.016510s, 12384 KB] f = 1, 1 evaluated, 0 expanded
+[t=0.016520s, 12516 KB] Initial heuristic value for blind: 1
+[t=0.016547s, 12516 KB] pruning method: none
+[t=0.016583s, 12516 KB] f = 2, 7 evaluated, 1 expanded
+[t=0.016623s, 12516 KB] f = 3, 19 evaluated, 7 expanded
+[t=0.016674s, 12516 KB] f = 4, 59 evaluated, 19 expanded
+[t=0.016777s, 12516 KB] f = 5, 148 evaluated, 59 expanded
+[t=0.017012s, 12516 KB] f = 6, 292 evaluated, 148 expanded
+[t=0.017417s, 12516 KB] f = 7, 627 evaluated, 292 expanded
+[t=0.018077s, 12516 KB] f = 8, 1264 evaluated, 627 expanded
+[t=0.019258s, 12516 KB] f = 9, 2178 evaluated, 1264 expanded
+[t=0.020781s, 12516 KB] f = 10, 3753 evaluated, 2178 expanded
+[t=0.023516s, 12684 KB] f = 11, 6347 evaluated, 3753 expanded
+[t=0.027534s, 12816 KB] f = 12, 9652 evaluated, 6347 expanded
+[t=0.032385s, 12952 KB] f = 13, 14377 evaluated, 9652 expanded
+[t=0.040226s, 13216 KB] f = 14, 21407 evaluated, 14377 expanded
+[t=0.049657s, 13488 KB] f = 15, 30020 evaluated, 21407 expanded
+[t=0.062661s, 14016 KB] f = 16, 41091 evaluated, 30020 expanded
+[t=0.078326s, 14288 KB] f = 17, 56301 evaluated, 41091 expanded
+[t=0.100372s, 15316 KB] f = 18, 73249 evaluated, 56301 expanded
+[t=0.121928s, 15612 KB] f = 19, 91667 evaluated, 73249 expanded
+[t=0.150570s, 18208 KB] f = 20, 113419 evaluated, 91667 expanded
+[t=0.175370s, 18208 KB] New best heuristic value for blind: 0
+[t=0.175470s, 18208 KB] g=20, 133898 evaluated, 111650 expanded
+[t=0.175499s, 18208 KB] Solution found!
+[t=0.175519s, 18208 KB] Actual search time: 0.158955s
+enable-sealing curator-1 (1)
+move-sealing curator-1 maintenance-tunnel anti-vibration-pods (1)
+load-pod pod-1 anti-vibration-pods curator-1 (1)
+move-sealing curator-1 anti-vibration-pods maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel artifact-hall-alpha (1)
+load-normal-artifact heavy-meteorite artifact-hall-alpha curator-1 spot-c1 (1)
+load-normal-artifact martian-core-sample artifact-hall-alpha curator-1 spot-c2 (1)
+move-sealing curator-1 artifact-hall-alpha maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel cryo-chamber (1)
+cooling martian-core-sample cryo-chamber curator-1 spot-c2 (1)
+move-sealing curator-1 cryo-chamber maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel stasis-lab (1)
+unload-artifact martian-core-sample stasis-lab curator-1 spot-c2 (1)
+move-sealing curator-1 stasis-lab maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel artifact-hall-beta (1)
+load-delicate-artifact fragile-rock artifact-hall-beta curator-1 spot-c2 (1)
+move-sealing curator-1 artifact-hall-beta maintenance-tunnel (1)
+move-sealing curator-1 maintenance-tunnel stasis-lab (1)
+unload-artifact heavy-meteorite stasis-lab curator-1 spot-c1 (1)
+unload-artifact fragile-rock stasis-lab curator-1 spot-c2 (1)
+[t=0.175537s, 18208 KB] Plan length: 20 step(s).
+[t=0.175537s, 18208 KB] Plan cost: 20
+[t=0.175537s, 18208 KB] Expanded 111651 state(s).
+[t=0.175537s, 18208 KB] Reopened 0 state(s).
+[t=0.175537s, 18208 KB] Evaluated 133898 state(s).
+[t=0.175537s, 18208 KB] Evaluations: 133898
+[t=0.175537s, 18208 KB] Generated 488669 state(s).
+[t=0.175537s, 18208 KB] Dead ends: 0 state(s).
+[t=0.175537s, 18208 KB] Expanded until last jump: 91667 state(s).
+[t=0.175537s, 18208 KB] Reopened until last jump: 0 state(s).
+[t=0.175537s, 18208 KB] Evaluated until last jump: 113419 state(s).
+[t=0.175537s, 18208 KB] Generated until last jump: 410354 state(s).
+[t=0.175537s, 18208 KB] Number of registered states: 133898
+[t=0.175537s, 18208 KB] Int hash set load factor: 133898/262144 = 0.510780
+[t=0.175537s, 18208 KB] Int hash set resizes: 18
+[t=0.175537s, 18208 KB] Search time: 0.159091s
+[t=0.175537s, 18208 KB] Total time: 0.175537s
+Solution found.
+Peak memory: 18208 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.43s
+(planutils) root@5cbe8f9fd4ca:~/workspace/Problem2$

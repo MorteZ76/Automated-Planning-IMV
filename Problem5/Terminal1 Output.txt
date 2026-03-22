@@ -1,105 +1,94 @@
-root@a16095967ce2:~/planning_ws# ros2 launch plansys2_assignment plansys2_assignment_launch.py
-[INFO] [launch]: All log files can be found below /root/.ros/log/2026-03-21-08-51-26-199336-a16095967ce2-4077
+root@2c7b0aadcfc8:/workspace/Problem5/plansys2_assignment# source install/setup.bash
+root@2c7b0aadcfc8:/workspace/Problem5/plansys2_assignment# ros2 launch plansys2_assignment plansys2_assignment_launch.py
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-03-22-16-35-47-980182-2c7b0aadcfc8-1200
 [INFO] [launch]: Default logging verbosity is set to INFO
-[INFO] [plansys2_node-1]: process started with pid [4079]
-[INFO] [move_normal_node-2]: process started with pid [4081]
-[INFO] [move_sealing_node-3]: process started with pid [4083]
-[INFO] [move_drone_node-4]: process started with pid [4085]
-[INFO] [load_delicate_artifact_node-5]: process started with pid [4087]
-[INFO] [load_normal_artifact_node-6]: process started with pid [4089]
-[INFO] [unload_artifact_node-7]: process started with pid [4091]
-[INFO] [cooling_node-8]: process started with pid [4093]
-[INFO] [load_pod_node-9]: process started with pid [4095]
-[INFO] [unload_pod_node-10]: process started with pid [4097]
-[INFO] [enable_sealing_node-11]: process started with pid [4099]
-[INFO] [disable_sealing_node-12]: process started with pid [4117]
-[plansys2_node-1] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[move_normal_node-2] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[move_sealing_node-3] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[move_drone_node-4] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[load_delicate_artifact_node-5] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[load_normal_artifact_node-6] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[unload_artifact_node-7] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[cooling_node-8] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[load_pod_node-9] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[unload_pod_node-10] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[enable_sealing_node-11] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[disable_sealing_node-12] RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED is now ignored.  Please set RCUTILS_LOGGING_USE_STDOUT and RCUTILS_LOGGING_BUFFERED_STREAM to control the stream and the buffering of log messages.
-[plansys2_node-1] [INFO] [1774083087.082933065] [domain_expert_lc_mngr]: Creating client for service [domain_expert/get_state]
-[plansys2_node-1] [INFO] [1774083087.083033455] [domain_expert_lc_mngr]: Creating client for service [domain_expert/change_state]
-[plansys2_node-1] [INFO] [1774083087.084605022] [executor_lc_mngr]: Creating client for service [executor/get_state]
-[plansys2_node-1] [INFO] [1774083087.084656865] [executor_lc_mngr]: Creating client for service [executor/change_state]
-[plansys2_node-1] [INFO] [1774083087.086440884] [planner_lc_mngr]: Creating client for service [planner/get_state]
-[plansys2_node-1] [INFO] [1774083087.086467791] [planner_lc_mngr]: Creating client for service [planner/change_state]
-[plansys2_node-1] [INFO] [1774083087.088447939] [problem_expert_lc_mngr]: Creating client for service [problem_expert/get_state]
-[plansys2_node-1] [INFO] [1774083087.088493171] [problem_expert_lc_mngr]: Creating client for service [problem_expert/change_state]
-[plansys2_node-1] [INFO] [1774083087.092419696] [domain_expert]: [domain_expert] Configuring...   
-[plansys2_node-1] [INFO] [1774083087.238313706] [domain_expert]: [domain_expert] Configured
-[plansys2_node-1] [INFO] [1774083087.240275451] [domain_expert_lc_mngr]: Transition 1 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.241391365] [domain_expert_lc_mngr]: Node domain_expert_lc_mngr has current state inactive.
-[plansys2_node-1] [INFO] [1774083087.241913710] [problem_expert]: [problem_expert] Configuring... 
-[plansys2_node-1] [INFO] [1774083087.249131838] [problem_expert]: [problem_expert] Configured     
-[plansys2_node-1] [INFO] [1774083087.250220224] [problem_expert_lc_mngr]: Transition 1 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.251481506] [problem_expert_lc_mngr]: Node problem_expert_lc_mngr has current state inactive.
-[plansys2_node-1] [INFO] [1774083087.251979391] [planner]: [planner] Configuring...
-[plansys2_node-1] [INFO] [1774083087.257369826] [planner]: Created solver : POPF of type plansys2/POPFPlanSolver
-[plansys2_node-1] [INFO] [1774083087.257399600] [planner]: [planner] Configured
-[plansys2_node-1] [INFO] [1774083087.258299096] [planner_lc_mngr]: Transition 1 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.259538347] [planner_lc_mngr]: Node planner_lc_mngr has current state inactive.
-[plansys2_node-1] [INFO] [1774083087.259969413] [executor]: [executor] Configuring...
-[plansys2_node-1] [INFO] [1774083087.326296131] [executor]: [executor] Configured
-[plansys2_node-1] [INFO] [1774083087.327756340] [executor_lc_mngr]: Transition 1 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.329583562] [executor_lc_mngr]: Node executor_lc_mngr has current state inactive.
-[plansys2_node-1] [INFO] [1774083087.330001232] [domain_expert]: [domain_expert] Activating...    
-[plansys2_node-1] [INFO] [1774083087.330022723] [domain_expert]: [domain_expert] Activated        
-[plansys2_node-1] [INFO] [1774083087.330377031] [domain_expert_lc_mngr]: Transition 3 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.330728311] [problem_expert]: [problem_expert] Activating...  
-[plansys2_node-1] [INFO] [1774083087.330753509] [problem_expert]: [problem_expert] Activated      
-[plansys2_node-1] [INFO] [1774083087.331012757] [problem_expert_lc_mngr]: Transition 3 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.331316818] [planner]: [planner] Activating...
-[plansys2_node-1] [INFO] [1774083087.331330225] [planner]: [planner] Activated
-[plansys2_node-1] [INFO] [1774083087.331535746] [planner_lc_mngr]: Transition 3 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.331795690] [executor]: [executor] Activating...
-[plansys2_node-1] [INFO] [1774083087.331807638] [executor]: [executor] Activated
-[plansys2_node-1] [INFO] [1774083087.332058628] [executor_lc_mngr]: Transition 3 successfully triggered.
-[plansys2_node-1] [INFO] [1774083087.332440720] [domain_expert_lc_mngr]: Node domain_expert_lc_mngr has current state active.
-[plansys2_node-1] [INFO] [1774083087.332974777] [problem_expert_lc_mngr]: Node problem_expert_lc_mngr has current state active.
-[plansys2_node-1] [INFO] [1774083087.333483568] [planner_lc_mngr]: Node planner_lc_mngr has current state active.
-[plansys2_node-1] [INFO] [1774083087.334026698] [executor_lc_mngr]: Node executor_lc_mngr has current state active.
-[plansys2_node-1] [INFO] [1774083126.254288750] [executor]: Action enable_sealing timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.256753276] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.258344063] [executor]: Action move_sealing timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.260681786] [executor]: Action load_normal_artifact timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.263011952] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.265373716] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.267360990] [executor]: Action load_pod timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.270708798] [executor]: Action unload_artifact timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.273440464] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.276071774] [executor]: Action move_sealing timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.278416548] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.280899112] [executor]: Action load_normal_artifact timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.283382554] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.286735888] [executor]: Action move_sealing timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.289668098] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.292348735] [executor]: Action cooling timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.294936695] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.297470910] [executor]: Action load_delicate_artifact timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.300199912] [executor]: Action move_drone timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.303156508] [executor]: Action move_sealing timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.306979890] [executor]: Action unload_artifact timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.310822373] [executor]: Action move_sealing timeout percentage -1.000000
-[plansys2_node-1] [INFO] [1774083126.313547478] [executor]: Action unload_artifact timeout percentage -1.000000
-[plansys2_node-1] [WARN] [1774083126.323013235] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
-[plansys2_node-1] [WARN] [1774083126.346049454] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
-[plansys2_node-1] [WARN] [1774083126.418750140] [LifecyclePublisher]: Trying to publish message on the topic '/actions_hub', but the publisher is not activated
+[INFO] [plansys2_node-1]: process started with pid [1201]
+[INFO] [move_normal_node-2]: process started with pid [1203]
+[INFO] [move_sealing_node-3]: process started with pid [1205]
+[INFO] [move_drone_node-4]: process started with pid [1207]
+[INFO] [load_delicate_artifact_node-5]: process started with pid [1209]
+[INFO] [load_normal_artifact_node-6]: process started with pid [1211]
+[INFO] [unload_artifact_node-7]: process started with pid [1213]
+[INFO] [cooling_node-8]: process started with pid [1225]
+[INFO] [load_pod_node-9]: process started with pid [1229]
+[INFO] [unload_pod_node-10]: process started with pid [1270]
+[INFO] [enable_sealing_node-11]: process started with pid [1293]
+[INFO] [disable_sealing_node-12]: process started with pid [1308]
+[plansys2_node-1] [INFO] [1774197348.667694064] [domain_expert_lc_mngr]: Creating client for service [domain_expert/get_state]
+[plansys2_node-1] [INFO] [1774197348.667846483] [domain_expert_lc_mngr]: Creating client for service [domain_expert/change_state]
+[plansys2_node-1] [INFO] [1774197348.669871582] [executor_lc_mngr]: Creating client for service [executor/get_state]
+[plansys2_node-1] [INFO] [1774197348.669913363] [executor_lc_mngr]: Creating client for service [executor/change_state]
+[plansys2_node-1] [INFO] [1774197348.671741830] [planner_lc_mngr]: Creating client for service [planner/get_state]
+[plansys2_node-1] [INFO] [1774197348.671778651] [planner_lc_mngr]: Creating client for service [planner/change_state]
+[plansys2_node-1] [INFO] [1774197348.673693829] [problem_expert_lc_mngr]: Creating client for service [problem_expert/get_state]
+[plansys2_node-1] [INFO] [1774197348.673729890] [problem_expert_lc_mngr]: Creating client for service [problem_expert/change_state]
+[plansys2_node-1] [INFO] [1774197348.676090278] [domain_expert]: [domain_expert] Configuring...
+[plansys2_node-1] [INFO] [1774197348.800140768] [domain_expert]: [domain_expert] Configured
+[plansys2_node-1] [INFO] [1774197348.801096066] [domain_expert_lc_mngr]: Transition 1 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.801396510] [domain_expert_lc_mngr]: Node domain_expert_lc_mngr has current state inactive.
+[plansys2_node-1] [INFO] [1774197348.801524223] [problem_expert]: [problem_expert] Configuring...
+[plansys2_node-1] [INFO] [1774197348.807995426] [problem_expert]: [problem_expert] Configured
+[plansys2_node-1] [INFO] [1774197348.808690744] [problem_expert_lc_mngr]: Transition 1 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.808907565] [problem_expert_lc_mngr]: Node problem_expert_lc_mngr has current state inactive.
+[plansys2_node-1] [INFO] [1774197348.809078460] [planner]: [planner] Configuring...
+[plansys2_node-1] [INFO] [1774197348.815542213] [planner]: Created solver : POPF of type plansys2/POPFPlanSolver
+[plansys2_node-1] [INFO] [1774197348.815621911] [planner]: [planner] Configured
+[plansys2_node-1] [INFO] [1774197348.815898436] [planner_lc_mngr]: Transition 1 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.816156965] [planner_lc_mngr]: Node planner_lc_mngr has current state inactive.
+[plansys2_node-1] [INFO] [1774197348.816291958] [executor]: [executor] Configuring...
+[plansys2_node-1] [INFO] [1774197348.893741553] [executor]: [executor] Configured
+[plansys2_node-1] [INFO] [1774197348.893998901] [executor_lc_mngr]: Transition 1 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.894224916] [executor_lc_mngr]: Node executor_lc_mngr has current state inactive.
+[plansys2_node-1] [INFO] [1774197348.894436335] [domain_expert]: [domain_expert] Activating...
+[plansys2_node-1] [INFO] [1774197348.894450870] [domain_expert]: [domain_expert] Activated
+[plansys2_node-1] [INFO] [1774197348.894619418] [domain_expert_lc_mngr]: Transition 3 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.894823115] [problem_expert]: [problem_expert] Activating...
+[plansys2_node-1] [INFO] [1774197348.894853763] [problem_expert]: [problem_expert] Activated
+[plansys2_node-1] [INFO] [1774197348.895088260] [problem_expert_lc_mngr]: Transition 3 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.895388740] [planner]: [planner] Activating...
+[plansys2_node-1] [INFO] [1774197348.895403420] [planner]: [planner] Activated
+[plansys2_node-1] [INFO] [1774197348.895678655] [planner_lc_mngr]: Transition 3 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.896022222] [executor]: [executor] Activating...
+[plansys2_node-1] [INFO] [1774197348.896060711] [executor]: [executor] Activated
+[plansys2_node-1] [INFO] [1774197348.896201909] [executor_lc_mngr]: Transition 3 successfully triggered.
+[plansys2_node-1] [INFO] [1774197348.896379452] [domain_expert_lc_mngr]: Node domain_expert_lc_mngr has current state active.
+[plansys2_node-1] [INFO] [1774197348.896659854] [problem_expert_lc_mngr]: Node problem_expert_lc_mngr has current state active.
+[plansys2_node-1] [INFO] [1774197348.896903207] [planner_lc_mngr]: Node planner_lc_mngr has current state active.
+[plansys2_node-1] [INFO] [1774197348.897120765] [executor_lc_mngr]: Node executor_lc_mngr has current state active.
+[plansys2_node-1] [INFO] [1774197375.840656870] [executor]: Action enable_sealing timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.842656106] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.845324961] [executor]: Action move_sealing timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.848392148] [executor]: Action load_normal_artifact timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.851243033] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.854248122] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.857406938] [executor]: Action load_pod timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.860815867] [executor]: Action unload_artifact timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.864800616] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.868724393] [executor]: Action move_sealing timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.872926480] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.877265948] [executor]: Action load_normal_artifact timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.881916610] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.886828462] [executor]: Action move_sealing timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.890889691] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.894682698] [executor]: Action cooling timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.898115233] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.902565925] [executor]: Action load_delicate_artifact timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.907156991] [executor]: Action move_drone timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.911009527] [executor]: Action move_sealing timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.915500230] [executor]: Action unload_artifact timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.920227202] [executor]: Action move_sealing timeout percentage -1.000000
+[plansys2_node-1] [INFO] [1774197375.924454745] [executor]: Action unload_artifact timeout percentage -1.000000
+[plansys2_node-1] [WARN] [1774197375.933450098] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[plansys2_node-1] [WARN] [1774197375.963164067] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[plansys2_node-1] [WARN] [1774197376.137684094] [LifecyclePublisher]: Trying to publish message on the topic '/actions_hub', but the publisher is not activated
 enable_sealing ... [100%]
 move_drone ... [100%]
 move_sealing ... [100%]
 load_normal_artifact ... [100%]
-[plansys2_node-1] [WARN] [1774083136.619594421] [LifecyclePublisher]: Trying to publish message on the topic '/actions_hub', but the publisher is not activated
+[plansys2_node-1] [WARN] [1774197387.358579355] [LifecyclePublisher]: Trying to publish message on the topic '/actions_hub', but the publisher is not activated
 load_pod ... [100%]
 move_drone ... [100%]
-[plansys2_node-1] [WARN] [1774083141.725669020] [LifecyclePublisher]: Trying to publish message on the topic '/actions_hub', but the publisher is not activated
+[plansys2_node-1] [WARN] [1774197392.940113003] [LifecyclePublisher]: Trying to publish message on the topic '/actions_hub', but the publisher is not activated
 move_sealing ... [100%]
 move_drone ... [100%]
 move_sealing ... [100%]
@@ -108,13 +97,13 @@ load_delicate_artifact ... [100%]
 move_drone ... [100%]
 move_sealing ... [100%]
 move_drone ... [100%]
+move_sealing ... [100%]
 load_normal_artifact ... [100%]
+unload_artifact ... [100%]
 move_drone ... [100%]
 move_drone ... [100%]
 cooling ... [100%]
 move_drone ... [100%]
 move_drone ... [100%]
-move_sealing ... [100%]
 unload_artifact ... [100%]
-unload_artifact ... [100%]
-[plansys2_node-1] [INFO] [1774083203.015427097] [executor]: Plan Succeeded
+[plansys2_node-1] [INFO] [1774197454.634179358] [executor]: Plan Succeeded

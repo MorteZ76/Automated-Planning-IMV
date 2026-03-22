@@ -1,0 +1,185 @@
+(planutils) root@5cbe8f9fd4ca:~/workspace/Problem2$ cd /root/workspace/Problem3
+planutils run panda domain.hddl problem.hddl
+pandaPIparser is configured as follows
+  Colors in output: true
+  Mode: parsing mode
+  Parameter splitting: true
+  Conditional effects: exponential encoding
+  Disjunctive preconditions as HTN: false
+  Replace goal with action: false
+  Output: pandaPI format
+Parsing domain.hddl
+Parsing problem.hddl
+Random seed: 42
+Time limit: 1800 seconds
+Reading input from domain-problem.psas.
+- State has 36 bits divided into 36 mutex groups.
+- Domain contains 63 actions.
+- Domain contains 87 tasks.
+- Domain contains 59 methods.
+- The initial state contains 18 set bits.
+- The initial task is "__top[]".
+- State-based goal contains 0 bits.
+- Instance is totally-ordered: yes
+- Instance has unique paths: yes
+- Instance is parallel sequences: yes
+Calculate SCCs...
+- Number of SCCs: 87
+- The problem is acyclic
+Selected Planning Algorithm: progression searchParsing heuristics ...
+Number of specified heuristics: 1
+Generate 3
+
+RC Factory: CMA 1
+- the option "store cuts" of the RC heuristic can only be used with the inner heuristic LM-Cut. It will be disabled.
+- Calculating minimal implied distances and estimated costs (0 ms)
+Heuristic #0 = hhRC2(ff;distance;correct count)
+Search config:
+ - type: greedy
+ - weight: 1
+ - suboptimal: true
+Visited List configured
+- mode: total order
+- hashs to use: state task task-sequence
+- memory information: topological ordering
+- Visited list allows deletion of search nodes: true
+Search Configuration
+- Using JAIR 2020 progression algorithm
+- Search is stopped after first solution is found.
+- Greedy Search
+Search Results
+- Search time 0.001 seconds
+- Visited list time 0.000285 seconds
+- Visited list inserts 35
+- Visited list pruned 0
+- Visited list contains 35
+- Visited list hash collisions 0
+- Visited list used hash buckets 35
+- Generated 117 search nodes
+  Calculated heuristic for 76 nodes
+  One modifications 23
+  Effectless actions 18
+- including 23 one modification actions
+- including 0 one modification methods
+- and       18 progressions of effectless actions
+- Generated 76000 nodes per second
+- Final fringe contains 4 nodes
+- Status: Solved
+- Found solution of length 67
+- Total costs of actions: 23
+==>
+3 __method_precondition_m_evac_normal_ordering_0[heavy-meteorite,drone-1,artifact-hall-alpha,stasis-lab,spot-d1]
+6 __method_precondition_m_nav_drone_out_of_tunnel_ordering_0[maintenance-tunnel,drone-1,stasis-lab]
+7 move-drone[drone-1,maintenance-tunnel,artifact-hall-alpha]
+8 load-normal-artifact[heavy-meteorite,artifact-hall-alpha,drone-1,spot-d1]
+14 __method_precondition_m_nav_drone_cross_tunnel_ordering_0_split[drone-1,artifact-hall-alpha,maintenance-tunnel]
+15 move-drone[drone-1,artifact-hall-alpha,maintenance-tunnel]
+16 move-drone[drone-1,maintenance-tunnel,stasis-lab]
+17 unload-artifact[heavy-meteorite,stasis-lab,drone-1,spot-d1]
+22 __method_precondition_m_evac_hot_ordering_0[martian-core-sample,curator-1,artifact-hall-alpha,cryo-chamber,stasis-lab,spot-c1]
+26 __method_precondition_m_nav_robot_out_of_tunnel_ordering_0[maintenance-tunnel,curator-1,stasis-lab]
+30 __method_precondition_m_seal_turn_on_ordering_0[curator-1]
+31 enable-sealing[curator-1]
+32 move-sealing[curator-1,maintenance-tunnel,artifact-hall-alpha]
+33 load-normal-artifact[martian-core-sample,artifact-hall-alpha,curator-1,spot-c1]
+38 __method_precondition_m_seal_already_on_ordering_0[curator-1]
+43 __method_precondition_m_nav_robot_cross_tunnel_ordering_0_split_split[artifact-hall-alpha,curator-1,maintenance-tunnel]
+44 move-sealing[curator-1,artifact-hall-alpha,maintenance-tunnel]
+45 move-sealing[curator-1,maintenance-tunnel,cryo-chamber]
+46 cooling[martian-core-sample,cryo-chamber,curator-1,spot-c1]
+53 __method_precondition_m_seal_already_on_ordering_0[curator-1]
+59 __method_precondition_m_nav_robot_cross_tunnel_ordering_0_split_split[cryo-chamber,curator-1,maintenance-tunnel]
+60 move-sealing[curator-1,cryo-chamber,maintenance-tunnel]
+61 move-sealing[curator-1,maintenance-tunnel,stasis-lab]
+62 unload-artifact[martian-core-sample,stasis-lab,curator-1,spot-c1]
+73 __method_precondition_m_evac_delicate_needs_pod_ordering_0[fragile-rock,artifact-hall-beta,anti-vibration-pods,pod-2,curator-1,spot-c2]
+78 __method_precondition_m_seal_already_on_ordering_0[curator-1]
+85 __method_precondition_m_nav_robot_stay_ordering_0[curator-1,stasis-lab]
+86 move-sealing[curator-1,stasis-lab,maintenance-tunnel]
+87 move-sealing[curator-1,maintenance-tunnel,anti-vibration-pods]
+88 load-pod[pod-2,anti-vibration-pods,curator-1]
+93 __method_precondition_m_seal_already_on_ordering_0[curator-1]
+96 __method_precondition_m_nav_robot_cross_tunnel_ordering_0_split_split[anti-vibration-pods,curator-1,maintenance-tunnel]
+97 move-sealing[curator-1,anti-vibration-pods,maintenance-tunnel]
+98 move-sealing[curator-1,maintenance-tunnel,artifact-hall-beta]
+99 load-delicate-artifact[fragile-rock,artifact-hall-beta,curator-1,spot-c2]
+108 __method_precondition_m_seal_already_on_ordering_0[curator-1]
+112 __method_precondition_m_nav_robot_cross_tunnel_ordering_0_split_split[artifact-hall-beta,curator-1,maintenance-tunnel]
+113 move-sealing[curator-1,artifact-hall-beta,maintenance-tunnel]
+114 move-sealing[curator-1,maintenance-tunnel,stasis-lab]
+115 unload-artifact[fragile-rock,stasis-lab,curator-1,spot-c2]
+root 0
+111 _splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10[curator-1,maintenance-tunnel] -> _splitting_method__splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10 112 113
+107 apply_seal[curator-1] -> m_seal_already_on_ordering_0 108
+106 navigate[curator-1,stasis-lab] -> <m_nav_robot_cross_tunnel_ordering_0;m_nav_robot_cross_tunnel_ordering_0_splitted_5[curator-1,stasis-lab];_splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5;1;0,-1,-2> 107 111 114
+95 _splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10[curator-1,maintenance-tunnel] -> _splitting_method__splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10 96 97
+92 apply_seal[curator-1] -> m_seal_already_on_ordering_0 93
+91 navigate[curator-1,artifact-hall-beta] -> <m_nav_robot_cross_tunnel_ordering_0;m_nav_robot_cross_tunnel_ordering_0_splitted_5[curator-1,artifact-hall-beta];_splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5;1;0,-1,-2> 92 95 98
+84 _splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10[curator-1,maintenance-tunnel] -> _splitting_method__splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10 85 86
+77 apply_seal[curator-1] -> m_seal_already_on_ordering_0 78
+76 navigate[curator-1,anti-vibration-pods] -> <m_nav_robot_cross_tunnel_ordering_0;m_nav_robot_cross_tunnel_ordering_0_splitted_5[curator-1,anti-vibration-pods];_splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5;1;0,-1,-2> 77 84 87
+72 m_evac_delicate_needs_pod_ordering_0_splitted_8[curator-1,fragile-rock,artifact-hall-beta,spot-c2] -> _splitting_method_m_evac_delicate_needs_pod_ordering_0_splitted_8 73 76 88
+69 m_evac_delicate_needs_pod_ordering_0_splitted_11[curator-1,fragile-rock,spot-c2] -> _splitting_method_m_evac_delicate_needs_pod_ordering_0_splitted_11 72 91 99
+66 evacuate_delicate[fragile-rock,curator-1] -> <m_evac_delicate_needs_pod_ordering_0;m_evac_delicate_needs_pod_ordering_0_splitted_2[curator-1,fragile-rock,spot-c2];_splitting_method_m_evac_delicate_needs_pod_ordering_0_splitted_2;1;0,-1,-2> 69 106 115
+58 _splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10[curator-1,maintenance-tunnel] -> _splitting_method__splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10 59 60
+52 apply_seal[curator-1] -> m_seal_already_on_ordering_0 53
+51 navigate[curator-1,stasis-lab] -> <m_nav_robot_cross_tunnel_ordering_0;m_nav_robot_cross_tunnel_ordering_0_splitted_5[curator-1,stasis-lab];_splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5;1;0,-1,-2> 52 58 61
+42 _splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10[curator-1,maintenance-tunnel] -> _splitting_method__splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5_splitted_10 43 44
+37 apply_seal[curator-1] -> m_seal_already_on_ordering_0 38
+36 navigate[curator-1,cryo-chamber] -> <m_nav_robot_cross_tunnel_ordering_0;m_nav_robot_cross_tunnel_ordering_0_splitted_5[curator-1,cryo-chamber];_splitting_method_m_nav_robot_cross_tunnel_ordering_0_splitted_5;1;0,-1,-2> 37 42 45
+29 apply_seal[curator-1] -> m_seal_turn_on_ordering_0 30 31
+25 navigate[curator-1,artifact-hall-alpha] -> m_nav_robot_out_of_tunnel_ordering_0 26 29 32
+21 m_evac_hot_ordering_0_splitted_3[curator-1,martian-core-sample,spot-c1,cryo-chamber,stasis-lab] -> _splitting_method_m_evac_hot_ordering_0_splitted_3 22 25 33
+20 evacuate_hot[martian-core-sample,curator-1] -> <m_evac_hot_ordering_0;m_evac_hot_ordering_0_splitted_9[curator-1,martian-core-sample,spot-c1,stasis-lab];_splitting_method_m_evac_hot_ordering_0_splitted_9;0;-1,-2,-3,1,2> 21 36 46 51 62
+13 m_nav_drone_cross_tunnel_ordering_0_splitted_6[drone-1,maintenance-tunnel] -> _splitting_method_m_nav_drone_cross_tunnel_ordering_0_splitted_6 14 15
+12 navigate[drone-1,stasis-lab] -> m_nav_drone_cross_tunnel_ordering_0 13 16
+5 navigate[drone-1,artifact-hall-alpha] -> m_nav_drone_out_of_tunnel_ordering_0 6 7
+2 m_evac_normal_ordering_0_splitted_4[drone-1,heavy-meteorite,spot-d1,stasis-lab] -> _splitting_method_m_evac_normal_ordering_0_splitted_4 3 5 8
+0 __top[] -> <__top_method;evacuate_normal[heavy-meteorite,drone-1];m_evac_normal_ordering_0;0;-1,-2,-3,1,2> 2 12 17 20 66
+<==
+pandaPIparser is configured as follows
+  Colors in output: true
+  Mode: convert pandaPI plan
+==>
+7 move-drone drone-1 maintenance-tunnel artifact-hall-alpha
+8 load-normal-artifact heavy-meteorite artifact-hall-alpha drone-1 spot-d1
+15 move-drone drone-1 artifact-hall-alpha maintenance-tunnel
+16 move-drone drone-1 maintenance-tunnel stasis-lab
+17 unload-artifact heavy-meteorite stasis-lab drone-1 spot-d1
+31 enable-sealing curator-1
+32 move-sealing curator-1 maintenance-tunnel artifact-hall-alpha
+33 load-normal-artifact martian-core-sample artifact-hall-alpha curator-1 spot-c1
+44 move-sealing curator-1 artifact-hall-alpha maintenance-tunnel
+45 move-sealing curator-1 maintenance-tunnel cryo-chamber
+46 cooling martian-core-sample cryo-chamber curator-1 spot-c1
+60 move-sealing curator-1 cryo-chamber maintenance-tunnel
+61 move-sealing curator-1 maintenance-tunnel stasis-lab
+62 unload-artifact martian-core-sample stasis-lab curator-1 spot-c1
+86 move-sealing curator-1 stasis-lab maintenance-tunnel
+87 move-sealing curator-1 maintenance-tunnel anti-vibration-pods
+88 load-pod pod-2 anti-vibration-pods curator-1
+97 move-sealing curator-1 anti-vibration-pods maintenance-tunnel
+98 move-sealing curator-1 maintenance-tunnel artifact-hall-beta
+99 load-delicate-artifact fragile-rock artifact-hall-beta curator-1 spot-c2
+113 move-sealing curator-1 artifact-hall-beta maintenance-tunnel
+114 move-sealing curator-1 maintenance-tunnel stasis-lab
+115 unload-artifact fragile-rock stasis-lab curator-1 spot-c2
+root 116 20 66
+5 navigate drone-1 artifact-hall-alpha -> m_nav_drone_out_of_tunnel_ordering_0 7
+12 navigate drone-1 stasis-lab -> m_nav_drone_cross_tunnel_ordering_0 15 16
+20 evacuate_hot martian-core-sample curator-1 -> m_evac_hot_ordering_0 25 33 36 46 51 62
+25 navigate curator-1 artifact-hall-alpha -> m_nav_robot_out_of_tunnel_ordering_0 29 32
+29 apply_seal curator-1 -> m_seal_turn_on_ordering_0 31
+36 navigate curator-1 cryo-chamber -> m_nav_robot_cross_tunnel_ordering_0 37 44 45
+37 apply_seal curator-1 -> m_seal_already_on_ordering_0
+51 navigate curator-1 stasis-lab -> m_nav_robot_cross_tunnel_ordering_0 52 60 61
+52 apply_seal curator-1 -> m_seal_already_on_ordering_0
+66 evacuate_delicate fragile-rock curator-1 -> m_evac_delicate_needs_pod_ordering_0 76 88 91 99 106 115
+76 navigate curator-1 anti-vibration-pods -> m_nav_robot_cross_tunnel_ordering_0 77 86 87
+77 apply_seal curator-1 -> m_seal_already_on_ordering_0
+91 navigate curator-1 artifact-hall-beta -> m_nav_robot_cross_tunnel_ordering_0 92 97 98
+92 apply_seal curator-1 -> m_seal_already_on_ordering_0
+106 navigate curator-1 stasis-lab -> m_nav_robot_cross_tunnel_ordering_0 107 113 114
+107 apply_seal curator-1 -> m_seal_already_on_ordering_0
+116 evacuate_normal heavy-meteorite drone-1 -> m_evac_normal_ordering_0 5 8 12 17
+(planutils) root@5cbe8f9fd4ca:~/workspace/Problem3$
