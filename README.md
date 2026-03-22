@@ -1,29 +1,36 @@
-# Automated-Planning-IMV
-PDDL &amp; HDDL models for the Interplanetary Museum Vault (IMV) space scenario. Features a progression from STRIPS to Temporal planning and a ROS 2 PlanSys2 implementation. Includes autonomous curators and drones managing artifact relocation under seismic constraints.
+# Automated Planning for the Interplanetary Museum Vault (IMV)
+This repository contains a comprehensive suite of **PDDL** and **HDDL** models designed to manage the autonomous relocation of priceless artifacts within the Interplanetary Museum Vault. The project demonstrates a progression from classical STRIPS planning to advanced Temporal and Hierarchical (HTN) models, culminating in a real-time **ROS 2 PlanSys2** deployment.
+
+## Project Overview
+The IMV scenario involves autonomous curators and drones navigating a vault under seismic instability. The mission is to relocate artifacts to a stasis lab while managing constraints like low-pressure zones, fragile artifact handling, and required cooling sequences.
+| Phase | Planning Type | Framework/Solver | Key Feature |
+| :---:         |     :---:      |      :---:    |     :---:    |
+| Problem 1 & 2  | Classical (STRIPS)     | Fast Downward   | Multi-agent coordination & capacity limits.   |
+| Problem 3    | Hierarchical (HTN)       | PANDA     | Task decomposition and mission-level logic.    |
+| Problem 4    | Temporal       | Optic / TFD     | Durative actions and concurrent operations.    |
+| Problem 5    | Real-Time Execution       | ROS 2 PlanSys2     | C++ Action nodes and lifecycle management.    |
+
+## Prerequisites
+A. **Docker Desktop** (Required for all environments)
+B. **Git Bash** (Recommended for Windows users to avoid path conversion issues)
 
 ## 1. Repository Setup and Containerization
-
-First, clone the repository and start the $planutils$ container, which provides a pre-configured environment for **Fast Downward**, **Optic**, and **TFD**.
-
+Clone the repository and prepare the environment.
 ```bash
-# Clone the repository
 git clone https://github.com/MorteZ76/Automated-Planning-IMV
 cd Automated-Planning-IMV
-
-# Start the Planutils container with your local files mounted
-# Note: --privileged is required to allow Singularity/Apptainer to run inside Docker
-docker run -it --privileged -v "/$(pwd):/root/workspace" aiplanning/planutils:latest
 ```
-Once inside the container, navigate to your files and initialize the environment:
-
+### Planutils Environment (Problems 1–4)
+We use the *planutils* container for a pre-configured environment containing standard solvers.
 ```bash
-# Move to the mounted project directory
-cd /root/workspace
+# Start the container with local files mounted
+docker run -it --privileged -v "/$(pwd):/root/workspace" aiplanning/planutils:latest
 
-# Initialize planutils and install the required solvers
+# Inside the container:
+cd /root/workspace
 planutils activate
 planutils install downward optic tfd panda
-```   
+```  
 ## 2. Running Classical Planning (Problems 1 & 2)
 These problems use Fast Downward to find optimal and satisficing plans for artifact relocation.
 
@@ -42,8 +49,7 @@ planutils run downward domain.pddl problem.pddl -- --search "lazy_greedy([ff(),c
 ## 3. Running HTN Planning (Problem 3)
 Problem 3 requires the **PANDA** framework to process Hierarchical Task Networks (HDDL).
 ```bash
-cd ../Problem3
-# Run the HTN solver using the planutils wrapper
+cd /root/workspace/Problem3
 planutils run panda domain.hddl problem.hddl
 ``` 
 This will utilize the hhRC(hFF) heuristic to solve the task decomposition.
