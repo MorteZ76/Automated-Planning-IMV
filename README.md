@@ -65,12 +65,12 @@ Problem 5 must be run in a native ROS 2 Humble/Iron environment (outside the sta
 ### 1. Environment Setup (Host Terminal)
 If you do not have ROS 2 installed locally, use the official Docker image. Ensure you are in the root of your project directory before running the command to mount your workspace correctly.
 ```bash
-# Exit the planutils container
+# Exit the planutils container if you are still in it
 exit
 
-# Start a ROS 2 Humble container with your workspace mounted
-# Note: $(pwd) mounts your current directory to /root/workspace
-docker run -it --name plansys_vault --privileged -v "$(pwd):/root/workspace" osrf/ros:humble-desktop
+# Start the ROS 2 Humble container with path conversion disabled
+# Note: We mount to /workspace for a cleaner path structure
+MSYS_NO_PATHCONV=1 docker run -it --name plansys_vault --privileged -v "/$(pwd):/workspace" osrf/ros:humble-desktop
 ```
 
 ### 2. Dependency Installation & Build (Terminal 1)
@@ -82,22 +82,23 @@ apt install -y ros-humble-plansys2* \
                 python3-colcon-common-extensions \
                 python3-rosdep
 
-# 2. Initialize and update rosdep
+# 2. Update rosdep metadata
 rosdep update
 
 # 3. Navigate to the project folder
-cd /root/workspace/Problem5/plansys2_assignment
+# Note: We use /workspace to avoid Git Bash path mangling
+cd /workspace/Problem5/plansys2_assignment
 
 # 4. Install workspace-specific dependencies
 rosdep install --from-paths src --ignore-src -r -y
 
 # 5. Build and Source the workspace
+# Safety: If you have moved the folder, run 'rm -rf build/ install/ log/' first
 colcon build --symlink-install
 source install/setup.bash
 
 # 6. Launch the PlanSys2 system and Action Nodes
 ros2 launch plansys2_assignment plansys2_assignment_launch.py
-
 ```
 ### 3. Problem Initialization & Execution (Terminal 2)
 While Terminal 1 is running, open a second terminal to "feed" the world state and trigger the plan.
@@ -108,7 +109,7 @@ docker exec -it plansys_vault bash
 
 # 2. Source the ROS 2 and local environment
 source /opt/ros/humble/setup.bash
-cd /root/workspace/Problem5/plansys2_assignment
+cd /workspace/Problem5/plansys2_assignment
 source install/setup.bash
 
 # 3. Load state and run via the One-Shot Pipe 
